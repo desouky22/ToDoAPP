@@ -1,4 +1,7 @@
 import { useState } from "react";
+import ToDoList from "./ToDoList";
+import AddToDoForm from "./AddToDoForm";
+import log from "./logging";
 
 export default function ToDoApp() {
   const [todoItem, setTodoItem] = useState("");
@@ -8,7 +11,7 @@ export default function ToDoApp() {
     e.preventDefault();
   }
 
-  function handleClick() {
+  function handleAdd() {
     if (todoItem !== "") {
       setTodoList([
         ...todoList,
@@ -28,65 +31,30 @@ export default function ToDoApp() {
   }
 
   function handleCheck(id) {
-    console.log("Hello World");
-    let item = null;
-    for (let x = 0; x < todoList.length; x++) {
-      if (todoList[x].id === id) {
-        item = todoList[x];
+    log(id);
+    const filteredList = todoList.map((todoItem) => {
+      if (todoItem.id === id) {
+        return { ...todoItem, done: !todoItem.done };
       }
-    }
-    item.done = !item.done;
-    const filteredList = todoList.filter((item) => {
-      return item.id !== id;
+      return todoItem;
     });
-    setTodoList([...filteredList, item]);
+    setTodoList([...filteredList]);
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add Todo"
-          value={todoItem}
-          onChange={(e) => {
-            setTodoItem(e.target.value);
-          }}
-        />
-        <button onClick={handleClick}>SUBMIT</button>
-      </form>
-      <ul>
-        {todoList.map((item) => {
-          return (
-            <li key={item.id}>
-              {item.done ? (
-                <>
-                  <input
-                    type="checkbox"
-                    id="todo"
-                    checked
-                    onChange={() => handleCheck(item.id)}
-                  />
-                  <label htmlFor="todo">
-                    <del>{item.text}</del>
-                  </label>
-                </>
-              ) : (
-                <>
-                  <input
-                    type="checkbox"
-                    id="todo"
-                    onChange={() => handleCheck(item.id)}
-                  />
-                  <label htmlFor="todo">{item.text}</label>
-                </>
-              )}
-
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
-            </li>
-          );
-        })}
-      </ul>
+      <AddToDoForm
+        handleSubmit={handleSubmit}
+        todoItem={todoItem}
+        handleAdd={handleAdd}
+        setTodoItem={setTodoItem}
+      />
+      <ToDoList
+        todoList={todoList}
+        handleCheck={handleCheck}
+        handleAdd={handleAdd}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }
