@@ -13,11 +13,11 @@ export default function ToDoList({
               <>
                 <input
                   type="checkbox"
-                  id="todo"
+                  id={item.id}
                   checked
                   onChange={() => handleCheck(item.id)}
                 />
-                <label htmlFor="todo">
+                <label htmlFor={item.id}>
                   <del>{item.text}</del>
                 </label>
               </>
@@ -25,10 +25,10 @@ export default function ToDoList({
               <>
                 <input
                   type="checkbox"
-                  id="todo"
+                  id={item.id}
                   onChange={() => handleCheck(item.id)}
                 />
-                <label htmlFor="todo">{item.text}</label>
+                <label htmlFor={item.id}>{item.text}</label>
               </>
             )}
 
