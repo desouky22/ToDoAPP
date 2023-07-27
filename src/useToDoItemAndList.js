@@ -29,7 +29,6 @@ export default function useToDOItemAndList(initialItem, initialList) {
   }
 
   function handleCheck(id) {
-    console.log(process.env.REACT_APP_DESOUKY);
     log(id);
     const filteredList = todoList.map((todoItem) => {
       if (todoItem.id === id) {
