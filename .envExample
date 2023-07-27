@@ -1,1 +1,1 @@
-DEBUG= (true | false) 
+REACT_APP_DEBUG= (true | false) 
