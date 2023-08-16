@@ -1,0 +1,32 @@
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.todo-checkbox {
+  margin-right: 10px;
+}
+
+.todo-label {
+  flex-grow: 1;
+}
+
+.todo-delete-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.todo-delete-button:hover {
+  background-color: #c82333;
+}
