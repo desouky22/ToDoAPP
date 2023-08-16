@@ -30,3 +30,7 @@
 .todo-delete-button:hover {
   background-color: #c82333;
 }
+
+.todo-item-checked {
+  background-color: green;
+}
