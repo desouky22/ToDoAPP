@@ -1,3 +1,5 @@
+import './AddToDoForm.css';
+
 export default function AddToDoForm({
   handleSubmit,
   todoItem,
@@ -5,7 +7,7 @@ export default function AddToDoForm({
   setTodoItem,
 }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="add-todo-form">
       <input
         type="text"
         placeholder="Add Todo"
@@ -13,8 +15,9 @@ export default function AddToDoForm({
         onChange={(e) => {
           setTodoItem(e.target.value);
         }}
+        className="add-todo-input"
       />
-      <button onClick={handleAdd}>Add</button>
+      <button onClick={handleAdd} className="add-todo-button">Add</button>
     </form>
   );
 }
