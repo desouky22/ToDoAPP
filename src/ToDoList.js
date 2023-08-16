@@ -1,3 +1,5 @@
+import './ToDoList.css';
+
 export default function ToDoList({
   todoList,
   handleCheck,
@@ -5,10 +7,10 @@ export default function ToDoList({
   handleDelete,
 }) {
   return (
-    <ul>
+    <ul className="todo-list">
       {todoList.map((item) => {
         return (
-          <li key={item.id}>
+          <li key={item.id} className="todo-item">
             {item.done ? (
               <>
                 <input
@@ -16,8 +18,9 @@ export default function ToDoList({
                   id={item.id}
                   checked
                   onChange={() => handleCheck(item.id)}
+                  className="todo-checkbox"
                 />
-                <label htmlFor={item.id}>
+                <label htmlFor={item.id} className="todo-label">
                   <del>{item.text}</del>
                 </label>
               </>
@@ -27,12 +30,13 @@ export default function ToDoList({
                   type="checkbox"
                   id={item.id}
                   onChange={() => handleCheck(item.id)}
+                  className="todo-checkbox"
                 />
-                <label htmlFor={item.id}>{item.text}</label>
+                <label htmlFor={item.id} className="todo-label">{item.text}</label>
               </>
             )}
 
-            <button onClick={() => handleDelete(item.id)}>Delete</button>
+            <button onClick={() => handleDelete(item.id)} className="todo-delete-button">Delete</button>
           </li>
         );
       })}
