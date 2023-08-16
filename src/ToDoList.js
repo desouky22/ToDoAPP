@@ -1,45 +1,20 @@
 import './ToDoList.css';
 
-export default function ToDoList({
-  todoList,
-  handleCheck,
-  handleAdd,
-  handleDelete,
-}) {
+export default function ToDoList({ todoList, handleCheck, handleDelete }) {
   return (
     <ul className="todo-list">
-      {todoList.map((item) => {
-        return (
-          <li key={item.id} className="todo-item">
-            {item.done ? (
-              <>
-                <input
-                  type="checkbox"
-                  id={item.id}
-                  checked
-                  onChange={() => handleCheck(item.id)}
-                  className="todo-checkbox"
-                />
-                <label htmlFor={item.id} className="todo-label">
-                  <del>{item.text}</del>
-                </label>
-              </>
-            ) : (
-              <>
-                <input
-                  type="checkbox"
-                  id={item.id}
-                  onChange={() => handleCheck(item.id)}
-                  className="todo-checkbox"
-                />
-                <label htmlFor={item.id} className="todo-label">{item.text}</label>
-              </>
-            )}
-
-            <button onClick={() => handleDelete(item.id)} className="todo-delete-button">Delete</button>
-          </li>
-        );
-      })}
+      {todoList.map((todo, index) => (
+        <li key={index} className={`todo-item ${todo.checked ? 'todo-item-checked' : ''}`}>
+          <input
+            type="checkbox"
+            checked={todo.checked}
+            onChange={() => handleCheck(index)}
+            className="todo-checkbox"
+          />
+          <label className="todo-label">{todo.text}</label>
+          <button onClick={() => handleDelete(index)} className="todo-delete-button">Delete</button>
+        </li>
+      ))}
     </ul>
   );
 }
